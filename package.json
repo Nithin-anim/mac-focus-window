@@ -1,5 +1,5 @@
 {
-  "name": "mac-focus-window",
+  "name": "@nithin1712/mac-focus-window",
   "version": "1.0.0",
   "description": "Focus a window and bring it to the front on macOS",
   "repository": "https://github.com/karaggeorge/mac-focus-window",
@@ -8,6 +8,7 @@
     "email": "gkaragkiaouris2@gmail.com",
     "url": "https://gkaragkiaouris.tech"
   },
+  "private": false,
   "license": "MIT",
   "scripts": {
     "test": "xo",

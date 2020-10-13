@@ -4,7 +4,7 @@ const execa = require('execa');
 const electronUtil = require('electron-util/node');
 const macosVersion = require('macos-version');
 
-const binary = path.join(electronUtil.fixPathForAsarUnpack(__dirname), 'focus-window');
+const binary = path.join(__dirname, 'focus-window').replace('app.asar', 'app.asar.unpacked');
 
 const isSupported = macosVersion.isGreaterThanOrEqualTo('10.14.4');
 
@@ -18,7 +18,7 @@ module.exports = windowNumber => {
 	}
 
 	try {
-		const {stdout} = execa.sync(binary, ['focus', windowNumber]);
+		const { stdout } = execa.sync(binary, ['focus', windowNumber]);
 		return stdout === 'true';
 	} catch (error) {
 		throw new Error(error.stderr);
@@ -32,7 +32,7 @@ module.exports.hasPermissions = () => {
 		return false;
 	}
 
-	const {stdout} = execa.sync(binary, ['permissions', 'check']);
+	const { stdout } = execa.sync(binary, ['permissions', 'check']);
 
 	return stdout === 'true';
 };
@@ -42,7 +42,7 @@ module.exports.requestPermissions = () => {
 		return false;
 	}
 
-	const {stdout} = execa.sync(binary, ['permissions', 'ask']);
+	const { stdout } = execa.sync(binary, ['permissions', 'ask']);
 
 	return stdout === 'true';
 };
